@@ -2,7 +2,7 @@ package com.awesome.reilly.masterdetailexample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -11,15 +11,15 @@ import android.widget.ListView;
 import com.awesome.reilly.masterdetailexample.dummy.DummyContent;
 
 /**
- * A list fragment representing a list of BlogPosts. This fragment
+ * A list fragment representing a list of blogPosts. This fragment
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link BlogPostDetailFragment}.
+ * currently being viewed in a {@link blogPostDetailFragment}.
  * <p>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class BlogPostListFragment extends ListFragment {
+public class blogPostListFragment extends ListFragment {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -64,7 +64,7 @@ public class BlogPostListFragment extends ListFragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public BlogPostListFragment() {
+    public blogPostListFragment() {
     }
 
     @Override

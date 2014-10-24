@@ -1,7 +1,7 @@
 package com.awesome.reilly.masterdetailexample;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +11,12 @@ import android.widget.TextView;
 import com.awesome.reilly.masterdetailexample.dummy.DummyContent;
 
 /**
- * A fragment representing a single BlogPost detail screen.
- * This fragment is either contained in a {@link BlogPostListActivity}
- * in two-pane mode (on tablets) or a {@link BlogPostDetailActivity}
+ * A fragment representing a single blogPost detail screen.
+ * This fragment is either contained in a {@link blogPostListActivity}
+ * in two-pane mode (on tablets) or a {@link blogPostDetailActivity}
  * on handsets.
  */
-public class BlogPostDetailFragment extends Fragment {
+public class blogPostDetailFragment extends Fragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -32,7 +32,7 @@ public class BlogPostDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public BlogPostDetailFragment() {
+    public blogPostDetailFragment() {
     }
 
     @Override
