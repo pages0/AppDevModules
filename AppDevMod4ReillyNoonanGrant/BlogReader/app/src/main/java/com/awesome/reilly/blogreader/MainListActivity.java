@@ -13,8 +13,10 @@ import java.util.HashMap;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -66,6 +69,28 @@ public class MainListActivity extends ListActivity {
 
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        try {
+            JSONArray blogPosts = mBlogData.getJSONArray("posts");
+            JSONObject blogPost = blogPosts.getJSONObject(position);
+            String blogUrl= blogPost.getString("url");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(blogUrl));
+            startActivity(intent);
+
+
+        } catch (JSONException e) {
+            logException(e);
+        }
+
+    }
+
+    private void logException(Exception e) {
+        Log.e(TAG, "Exception Caught", e);
+    }
+
     /**
      * Handles the blog response
      */
@@ -78,7 +103,7 @@ public class MainListActivity extends ListActivity {
             try {
                 JSONArray jsonPosts = mBlogData.getJSONArray("posts");
                 ArrayList<HashMap<String, String>> blogPosts = new ArrayList<HashMap<String, String>>();
-                for (int i = 0; i <= jsonPosts.length(); i++) {
+                for (int i = 0; i < jsonPosts.length(); i++) {
                     JSONObject post = jsonPosts.getJSONObject(i);
                     String title = post.getString(KEY_TITLE);
                     title = Html.fromHtml(title).toString();
@@ -92,7 +117,7 @@ public class MainListActivity extends ListActivity {
                     blogPosts.add(blogPost);
                 }
 
-                String[] keys = {KEY_AUTHOR, KEY_TITLE};
+                String[] keys = {KEY_TITLE, KEY_AUTHOR};
                 int[] ids = {android.R.id.text1, android.R.id.text2};
                 SimpleAdapter adapter = new SimpleAdapter(this, blogPosts,
                         android.R.layout.simple_list_item_2, keys, ids);
@@ -100,7 +125,10 @@ public class MainListActivity extends ListActivity {
                 setListAdapter(adapter);
 
             } catch (JSONException e) {
-                Log.e(TAG, "Exception caught!", e);
+                logException(e);
+            }
+            catch (Exception e){
+                logException(e);
             }
         }
     }
@@ -140,13 +168,6 @@ public class MainListActivity extends ListActivity {
         emptyTextView.setText(getString(R.string.no_items));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_list, menu);
-        return true;
-    }
-
 
     /**
      * Async thread
@@ -179,12 +200,12 @@ public class MainListActivity extends ListActivity {
                 }
 
             } catch (MalformedURLException e) {
-                Log.e(TAG, "Exception Caught: ", e);
+                logException(e);
 
             } catch (IOException e) {
-                Log.e(TAG, "Exception Caught: ", e);
+                logException(e);
             } catch (Exception e) {
-                Log.e(TAG, "Exception Caught: ", e);
+                logException(e);
             }
             return jsonResponse;
         }
