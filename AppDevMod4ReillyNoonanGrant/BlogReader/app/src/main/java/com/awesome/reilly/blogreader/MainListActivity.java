@@ -76,7 +76,7 @@ public class MainListActivity extends ListActivity {
             JSONArray blogPosts = mBlogData.getJSONArray("posts");
             JSONObject blogPost = blogPosts.getJSONObject(position);
             String blogUrl= blogPost.getString("url");
-            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Intent intent = new Intent(this, BlogWebViewActivity.class);
             intent.setData(Uri.parse(blogUrl));
             startActivity(intent);
 
