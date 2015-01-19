@@ -123,6 +123,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             navigateToLogin();
             return true;
         }
+        else if(id == R.id.action_edit_friends){
+            Intent intent = new Intent(this,EditFriendsActivity.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
